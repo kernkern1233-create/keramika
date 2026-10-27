@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Три чайных пары - Keramika_De_Kern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__container">
+      <div class="header__social">
+        <a href="https://t.me/keramika_de_kern" class="telegram-btn" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+          </svg>
+          Telegram
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="product-detail container">
+      
+      <div class="product-detail__header">
+        <a href="index.html" class="product-detail__nav-link">Главное меню</a>
+        <h1 class="product-detail__title">Три чайных пары</h1>
+        <a href="https://t.me/keramika_de_kern" target="_blank" class="product-detail__buy-link">Купить</a>
+      </div>
+
+      <div class="product-detail__content">
+        <button type="button" id="prevBtn" class="product-detail__arrow product-detail__arrow--left" aria-label="Предыдущее фото">&#8592;</button>
+
+        <div class="product-detail__image-wrapper">
+          <img id="productImage" src="images/cup1_1.png" alt="Три чайных пары" class="product-detail__image">
+        </div>
+
+        <button type="button" id="nextBtn" class="product-detail__arrow product-detail__arrow--right" aria-label="Следующее фото">&#8594;</button>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    const photos = [
+      'images/cup1_1.png',
+      'images/cup1_2.png',
+      'images/cup1_3.png',
+      'images/cup1_4.png'
+    ];
+
+    let currentIndex = 0;
+
+    const imgElement = document.getElementById('productImage');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updatePhoto(index) {
+      imgElement.style.opacity = '0';
+      setTimeout(() => {
+        imgElement.src = photos[index];
+        imgElement.style.opacity = '1';
+      }, 150);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+      updatePhoto(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % photos.length;
+      updatePhoto(currentIndex);
+    });
+  </script>
+
+</body>
+</html>
